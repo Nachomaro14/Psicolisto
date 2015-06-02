@@ -4,6 +4,19 @@ public class Interfaz extends javax.swing.JFrame {
 
     public Interfaz() {
         initComponents();
+        
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        autores.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        obras.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        enlaces.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        nuevoProyecto.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        nuevoAutor.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        nuevaObra.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        nuevoEnlace.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        eliminarProyecto.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        eliminarAutor.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        eliminarObra.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        eliminarEnlace.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -15,7 +28,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNombreNuevoProyecto = new javax.swing.JTextField();
-        txtNotaNuevoProyecto = new javax.swing.JTextField();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        txtNotaNuevoProyecto = new javax.swing.JTextPane();
         btnAceptarNuevoProyecto = new javax.swing.JButton();
         btnCancelarNuevoProyecto = new javax.swing.JButton();
         eliminarProyecto = new javax.swing.JDialog();
@@ -112,12 +126,16 @@ public class Interfaz extends javax.swing.JFrame {
         btnSalirInterfaz = new javax.swing.JButton();
         btnNuevoProyecto = new javax.swing.JButton();
         btnEliminarProyecto = new javax.swing.JButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        notaProyectos = new javax.swing.JTextPane();
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Proyecto"));
 
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Nota:");
+
+        jScrollPane10.setViewportView(txtNotaNuevoProyecto);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -130,8 +148,8 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombreNuevoProyecto)
-                    .addComponent(txtNotaNuevoProyecto))
+                    .addComponent(txtNombreNuevoProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -146,7 +164,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtNotaNuevoProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -228,6 +246,7 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaAutores);
 
+        notaAutores.setEditable(false);
         notaAutores.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane3.setViewportView(notaAutores);
 
@@ -450,6 +469,7 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tablaObras);
 
+        notaObras.setEditable(false);
         notaObras.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane5.setViewportView(notaObras);
 
@@ -630,7 +650,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Obras"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Enlaces"));
 
         tablaEnlaces.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -654,6 +674,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         btnSalirEnlaces.setText("Salir");
 
+        rutaEnlaces.setEditable(false);
         rutaEnlaces.setBorder(javax.swing.BorderFactory.createTitledBorder("Ruta"));
         jScrollPane8.setViewportView(rutaEnlaces);
 
@@ -865,6 +886,10 @@ public class Interfaz extends javax.swing.JFrame {
 
         btnEliminarProyecto.setText("Eliminar Proyecto");
 
+        notaProyectos.setEditable(false);
+        notaProyectos.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
+        jScrollPane9.setViewportView(notaProyectos);
+
         javax.swing.GroupLayout proyectosLayout = new javax.swing.GroupLayout(proyectos);
         proyectos.setLayout(proyectosLayout);
         proyectosLayout.setHorizontalGroup(
@@ -883,22 +908,28 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnNuevoProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         proyectosLayout.setVerticalGroup(
             proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(proyectosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAccederProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevoProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalirInterfaz, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9)
+                    .addGroup(proyectosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAccederProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevoProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalirInterfaz, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1000,6 +1031,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1007,9 +1039,11 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     public javax.swing.JTextPane notaAutores;
     public javax.swing.JTextPane notaEnlaces;
     public javax.swing.JTextPane notaObras;
+    public javax.swing.JTextPane notaProyectos;
     public javax.swing.JDialog nuevaObra;
     public javax.swing.JDialog nuevoAutor;
     public javax.swing.JDialog nuevoEnlace;
@@ -1032,7 +1066,7 @@ public class Interfaz extends javax.swing.JFrame {
     public javax.swing.JTextField txtNotaNuevaObra;
     public javax.swing.JTextField txtNotaNuevoAutor;
     public javax.swing.JTextField txtNotaNuevoEnlace;
-    public javax.swing.JTextField txtNotaNuevoProyecto;
+    public javax.swing.JTextPane txtNotaNuevoProyecto;
     public javax.swing.JTextField txtRutaNuevoEnlace;
     public javax.swing.JTextField txtTemaNuevaObra;
     public javax.swing.JTextField txtTemaNuevoEnlace;

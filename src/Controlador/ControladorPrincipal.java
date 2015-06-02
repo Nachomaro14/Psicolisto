@@ -7,12 +7,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 public class ControladorPrincipal implements ActionListener, MouseListener{
     
     Interfaz vista = Main.vista;
     
     ModeloPrincipal modelo;
+    
+    String nombreProyectoSeleccionado = "";
+    String nombreAutorSeleccionado = "";
+    String nombreObraSeleccionada = "";
+    String nombreEnlaceSeleccionado = "";
+    
+    String proyecto = "";
+    String autor = "";
+    String obra = "";
+    String enlace = "";
     
     public enum AccionMVC{
         btnAccederProyecto,
@@ -57,10 +68,14 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
     
     public void iniciar(){
         try{
+            vista.setTitle("Psicolisto");
+            
             modelo = new ModeloPrincipal();
             
+            this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
+            
             this.vista.setVisible(true);
-            this.vista.setLocation(100,100);
+            vista.setLocationRelativeTo(null);
             
             this.vista.btnAccederProyecto.setActionCommand("btnAccederProyecto");
             this.vista.btnAccederProyecto.addActionListener(this);
@@ -127,8 +142,29 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             this.vista.btnSiEliminarEnlace.addActionListener(this);
             this.vista.btnNoEliminarEnlace.setActionCommand("btnNoEliminarEnlace");
             this.vista.btnNoEliminarEnlace.addActionListener(this);
+            
+            this.vista.tablaProyectos.addMouseListener(this);
+            this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
+            this.vista.tablaProyectos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            this.vista.tablaProyectos.getTableHeader().setReorderingAllowed(false);
+            this.vista.tablaProyectos.getTableHeader().setResizingAllowed(false);
+            
+            this.vista.tablaAutores.addMouseListener(this);
+            this.vista.tablaAutores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            this.vista.tablaAutores.getTableHeader().setReorderingAllowed(false);
+            this.vista.tablaAutores.getTableHeader().setResizingAllowed(false);
+            
+            this.vista.tablaObras.addMouseListener(this);
+            this.vista.tablaObras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            this.vista.tablaObras.getTableHeader().setReorderingAllowed(false);
+            this.vista.tablaObras.getTableHeader().setResizingAllowed(false);
+            
+            this.vista.tablaEnlaces.addMouseListener(this);
+            this.vista.tablaEnlaces.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            this.vista.tablaEnlaces.getTableHeader().setReorderingAllowed(false);
+            this.vista.tablaEnlaces.getTableHeader().setResizingAllowed(false);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error al cargar el Controlador");
+            JOptionPane.showMessageDialog(null, "Error al cargar el Controlador.");
             e.printStackTrace();
         }
     }
@@ -136,102 +172,273 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
     public void actionPerformed(ActionEvent e) {
         switch (AccionMVC.valueOf(e.getActionCommand())){
             case btnAccederProyecto:
-                vista.setVisible(false);
+                if(nombreProyectoSeleccionado.equals("")){
+                    JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
+                }else{
+                    vista.setVisible(false);
+                    vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
+                    vista.autores.pack();
+                    vista.autores.setLocationRelativeTo(null);
+                    vista.autores.setVisible(true);
+                }
                 break;
             case btnSalirInterfaz:
                 System.exit(0);
                 break;
             case btnNuevoProyecto:
                 vista.setVisible(false);
+                vista.nuevoProyecto.pack();
+                vista.nuevoProyecto.setLocationRelativeTo(null);
+                vista.nuevoProyecto.setVisible(true);
                 break;
             case btnEliminarProyecto:
+                if(nombreProyectoSeleccionado.equals("")){
+                    JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
+                }else{
+                    vista.setVisible(false);
+                    vista.eliminarProyecto.pack();
+                    vista.eliminarProyecto.setLocationRelativeTo(null);
+                    vista.eliminarProyecto.setVisible(true);
+                }
                 break;
             case btnAceptarNuevoProyecto:
-                vista.nuevoProyecto.setVisible(false);
+                String nombreP = vista.txtNombreNuevoProyecto.getText();
+                String notaP = vista.txtNotaNuevoProyecto.getText();
+                if(nombreP != ""){
+                    modelo.nuevoProyecto(nombreP, notaP);
+                    vista.nuevoProyecto.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Introduzca un nombre para el nuevo proyecto.");
+                }
+                this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
+                vista.setVisible(true);
                 break;
             case btnCancelarNuevoProyecto:
                 vista.nuevoProyecto.setVisible(false);
+                vista.setVisible(true);
                 break;
             case btnSiEliminarProyecto:
+                modelo.eliminarProyecto(proyecto);
                 vista.eliminarProyecto.setVisible(false);
+                this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
+                vista.notaProyectos.setText("");
+                vista.setVisible(true);
                 break;
             case btnNoEliminarProyecto:
                 vista.eliminarProyecto.setVisible(false);
+                vista.setVisible(true);
                 break;
 
             case btnAñadirAutor:
                 vista.autores.setVisible(false);
+                vista.nuevoAutor.pack();
+                vista.nuevoAutor.setLocationRelativeTo(null);
+                vista.nuevoAutor.setVisible(true);
                 break;
             case btnEliminarAutor:
+                if(nombreAutorSeleccionado.equals("")){
+                    JOptionPane.showMessageDialog(null, "Seleccione un autor.");
+                }else{
+                    vista.autores.setVisible(false);
+                    vista.eliminarAutor.pack();
+                    vista.eliminarAutor.setLocationRelativeTo(null);
+                    vista.eliminarAutor.setVisible(true);
+                }
                 break;
             case btnObras:
-                vista.autores.setVisible(false);
+                if(nombreAutorSeleccionado.equals("")){
+                    JOptionPane.showMessageDialog(null, "Seleccione un autor.");
+                }else{
+                    vista.autores.setVisible(false);
+                    this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
+                    vista.obras.pack();
+                    vista.obras.setLocationRelativeTo(null);
+                    vista.obras.setVisible(true);
+                }
                 break;
             case btnEnlaces:
-                vista.autores.setVisible(false);
+                if(nombreAutorSeleccionado.equals("")){
+                    JOptionPane.showMessageDialog(null, "Seleccione un autor.");
+                }else{
+                    vista.autores.setVisible(false);
+                    this.vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
+                    vista.enlaces.pack();
+                    vista.enlaces.setLocationRelativeTo(null);
+                    vista.enlaces.setVisible(true);
+                }
                 break;
             case btnSalirAutores:
                 vista.autores.setVisible(false);
+                vista.setVisible(true);
+                autor = "";
+                nombreAutorSeleccionado = "";
                 break;
             case btnAceptarNuevoAutor:
+                String nombreA = vista.txtNombreNuevoAutor.getText();
+                String apellidosA = vista.txtApellidosNuevoAutor.getText();
+                String fechaNA = vista.txtFechaNacimientoNuevoAutor.getText();
+                String fechaDA = vista.txtFechaDefuncionNuevoAutor.getText();
+                String corrienteA = vista.txtCorrienteNuevoAutor.getText();
+                String notaA = vista.txtNotaNuevoAutor.getText();
+                if(nombreA != "" || apellidosA != ""){
+                    modelo.nuevoAutor(nombreA, apellidosA, fechaNA, fechaDA, corrienteA, notaA, proyecto);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Introduzca el nombre o apellido del nuevo autor.");
+                }
+                this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
+                vista.autores.setVisible(true);
                 vista.nuevoAutor.setVisible(false);
                 break;
             case btnCancelarNuevoAutor:
                 vista.nuevoAutor.setVisible(false);
+                vista.autores.setVisible(true);
                 break;
             case btnSiEliminarAutor:
+                modelo.eliminarAutor(autor);
                 vista.eliminarAutor.setVisible(false);
+                this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
+                vista.notaAutores.setText("");
+                vista.autores.setVisible(true);
                 break;
             case btnNoEliminarAutor:
                 vista.eliminarAutor.setVisible(false);
+                vista.autores.setVisible(true);
                 break;
 
             case btnAñadirObra:
                 vista.obras.setVisible(false);
+                vista.nuevaObra.pack();
+                vista.nuevaObra.setLocationRelativeTo(null);
+                vista.nuevaObra.setVisible(true);
                 break;
             case btnEliminarObra:
+                vista.obras.setVisible(false);
+                vista.eliminarObra.pack();
+                vista.eliminarObra.setLocationRelativeTo(null);
+                vista.eliminarObra.setVisible(true);
                 break;
             case btnSalirObras:
                 vista.obras.setVisible(false);
+                vista.autores.setVisible(true);
+                obra = "";
+                nombreObraSeleccionada = "";
                 break;
             case btnAceptarNuevaObra:
+                String tituloO = vista.txtTituloNuevaObra.getText();
+                String fechaPO = vista.txtFechaPublicacionNuevaObra.getText();
+                String temaO = vista.txtTemaNuevaObra.getText();
+                String notaO = vista.txtNotaNuevaObra.getText();
+                if(tituloO != ""){
+                    modelo.nuevaObra(tituloO, fechaPO, temaO, notaO, autor);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Introduzca el título de la nueva obra.");
+                }
                 vista.nuevaObra.setVisible(false);
+                this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
+                vista.obras.setVisible(true);
                 break;
             case btnCancelarNuevaObra:
                 vista.nuevaObra.setVisible(false);
+                vista.obras.setVisible(true);
                 break;
             case btnSiEliminarObra:
+                modelo.eliminarObra(obra);
                 vista.eliminarObra.setVisible(false);
+                this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
+                vista.notaObras.setText("");
+                vista.obras.setVisible(true);
                 break;
             case btnNoEliminarObra:
                 vista.eliminarObra.setVisible(false);
+                vista.obras.setVisible(true);
                 break;
 
             case btnAñadirEnlace:
                 vista.enlaces.setVisible(false);
+                vista.nuevoEnlace.pack();
+                vista.nuevoEnlace.setLocationRelativeTo(null);
+                vista.nuevoEnlace.setVisible(true);
                 break;
             case btnEliminarEnlace:
+                vista.eliminarEnlace.setVisible(false);
+                vista.enlaces.setVisible(true);
                 break;
             case btnSalirEnlaces:
                 vista.enlaces.setVisible(false);
+                vista.autores.setVisible(true);
+                enlace = "";
+                nombreEnlaceSeleccionado = "";
                 break;
             case btnAceptarNuevoEnlace:
+                String nombreE = vista.txtNombreNuevoEnlace.getText();
+                String rutaE = vista.txtRutaNuevoEnlace.getText();
+                String temaE = vista.txtTemaNuevoEnlace.getText();
+                String notaE = vista.txtNotaNuevoEnlace.getText();
+                if(rutaE != ""){
+                    modelo.nuevoEnlace(nombreE, rutaE, temaE, notaE, autor);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Introduzca la ruta del nuevo enlace.");
+                }
                 vista.nuevoEnlace.setVisible(false);
+                vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
+                vista.enlaces.setVisible(true);
                 break;
             case btnCancelarNuevoEnlace:
                 vista.nuevoEnlace.setVisible(false);
+                vista.enlaces.setVisible(true);
                 break;
             case btnSiEliminarEnlace:
+                modelo.eliminarEnlace(enlace);
                 vista.eliminarEnlace.setVisible(false);
+                vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
+                vista.notaEnlaces.setText("");
+                vista.enlaces.setVisible(true);
                 break;
             case btnNoEliminarEnlace:
                 vista.eliminarEnlace.setVisible(false);
+                vista.enlaces.setVisible(true);
                 break;
         }
     }
 
     public void mouseClicked(MouseEvent e) {
-        
+        int filaProyecto = this.vista.tablaProyectos.rowAtPoint(e.getPoint());
+        int filaAutor = this.vista.tablaAutores.rowAtPoint(e.getPoint());
+        int filaObra = this.vista.tablaObras.rowAtPoint(e.getPoint());
+        int filaEnlace = this.vista.tablaEnlaces.rowAtPoint(e.getPoint());
+            
+        if (filaProyecto > -1){
+            nombreProyectoSeleccionado = String.valueOf(this.vista.tablaProyectos.getValueAt(filaProyecto, 0));
+            proyecto = nombreProyectoSeleccionado;
+            String notaP = modelo.getNotaProyecto(proyecto);
+            vista.notaProyectos.setText(notaP);
+        }else{
+            nombreProyectoSeleccionado = "";
+        }
+        if (filaAutor > -1){
+            nombreAutorSeleccionado = String.valueOf(this.vista.tablaAutores.getValueAt(filaAutor, 0));
+            autor = nombreAutorSeleccionado;
+            String notaA = modelo.getNotaAutor(autor);
+            vista.notaAutores.setText(notaA);
+        }else{
+            nombreAutorSeleccionado = "";
+        }
+        if (filaObra > -1){
+            nombreObraSeleccionada = String.valueOf(this.vista.tablaObras.getValueAt(filaObra, 0));
+            obra = nombreObraSeleccionada;
+            String notaO = modelo.getNotaObra(obra);
+            vista.notaObras.setText(notaO);
+        }else{
+            nombreObraSeleccionada = "";
+        }
+        if (filaEnlace > -1){
+            nombreEnlaceSeleccionado = String.valueOf(this.vista.tablaEnlaces.getValueAt(filaEnlace, 0));
+            enlace = nombreEnlaceSeleccionado;
+            String notaE = modelo.getNotaEnlace(enlace);
+            vista.notaEnlaces.setText(notaE);
+        }else{
+            nombreEnlaceSeleccionado = "";
+        }
     }
 
     public void mousePressed(MouseEvent e) {
