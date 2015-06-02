@@ -415,4 +415,91 @@ public class ModeloPrincipal extends Database{
             ex.getStackTrace();
         }
     }
+    
+    public int comprobarExistenciaProyecto(String p){
+        int resu = 0;
+        String nombre = "";
+        try{
+            PreparedStatement pstm = this.getConexion().prepareStatement("SELECT Nombre FROM Proyectos WHERE Nombre = '"+p+"'");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            nombre = res.getString("Nombre");
+            res.close();
+            if(nombre.equals("")){
+                resu = 0;
+            }else{
+                resu = 1;
+            }
+        }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return resu;
+    }
+    
+    public int comprobarExistenciaAutor(String p, String n, String a){
+        int resu = 0;
+        String nombre = "";
+        String apellidos = "";
+        try{
+            PreparedStatement pstm = this.getConexion().prepareStatement("SELECT Nombre, Apellidos FROM Autores WHERE Nombre = '"+n+"'"
+                    + " AND Apellidos = '"+a+"' AND ID_Proyecto = (SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+p+"')");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            nombre = res.getString("Nombre");
+            apellidos = res.getString("Apellidos");
+            res.close();
+            if(nombre.equals("") && apellidos.equals("")){
+                resu = 0;
+            }else{
+                resu = 1;
+            }
+        }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return resu;
+    }
+    
+    public int comprobarExistenciaObra(String p, String n, String a, String t){
+        int resu = 0;
+        String titulo = "";
+        try{
+            PreparedStatement pstm = this.getConexion().prepareStatement("SELECT Titulo FROM Obras WHERE Titulo = '"+t+"'"
+                    + " AND ID_Autor = (SELECT ID_Autor FROM Autores WHERE Nombre = '"+n+"'"
+                    + " AND Apellidos = '"+a+"' AND ID_Proyecto = (SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+p+"'))");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            titulo = res.getString("Titulo");
+            res.close();
+            if(titulo.equals("")){
+                resu = 0;
+            }else{
+                resu = 1;
+            }
+        }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return resu;
+    }
+    
+    public int comprobarExistenciaEnlace(String p, String n, String a, String en){
+        int resu = 0;
+        String titulo = "";
+        try{
+            PreparedStatement pstm = this.getConexion().prepareStatement("SELECT Nombre FROM Enlaces WHERE Nombre = '"+en+"'"
+                    + " AND ID_Autor = (SELECT ID_Autor FROM Autores WHERE Nombre = '"+n+"'"
+                    + " AND Apellidos = '"+a+"' AND ID_Proyecto = (SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+p+"'))");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            titulo = res.getString("Nombre");
+            res.close();
+            if(titulo.equals("")){
+                resu = 0;
+            }else{
+                resu = 1;
+            }
+        }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return resu;
+    }
 }

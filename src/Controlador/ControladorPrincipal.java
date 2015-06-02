@@ -17,6 +17,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
     
     String nombreProyectoSeleccionado = "";
     String nombreAutorSeleccionado = "";
+    String apellidosAutorSeleccionado = "";
     String nombreObraSeleccionada = "";
     String nombreEnlaceSeleccionado = "";
     
@@ -24,6 +25,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
     String autor = "";
     String obra = "";
     String enlace = "";
+    String autorApe = "";
     
     public enum AccionMVC{
         btnAccederProyecto,
@@ -208,13 +210,18 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 String nombreP = vista.txtNombreNuevoProyecto.getText();
                 String notaP = vista.txtNotaNuevoProyecto.getText();
                 if(nombreP != ""){
-                    modelo.nuevoProyecto(nombreP, notaP);
-                    vista.nuevoProyecto.setVisible(false);
+                    int resuP = modelo.comprobarExistenciaProyecto(nombreP);
+                    if(resuP == 1){
+                        JOptionPane.showMessageDialog(null, "El nombre del proyecto ya está en uso.");
+                    }else{
+                        modelo.nuevoProyecto(nombreP, notaP);
+                        vista.nuevoProyecto.setVisible(false);
+                        vista.tablaProyectos.setModel(modelo.getTablaProyectos());
+                        vista.setVisible(true);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca un nombre para el nuevo proyecto.");
                 }
-                this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
-                vista.setVisible(true);
                 break;
             case btnCancelarNuevoProyecto:
                 vista.nuevoProyecto.setVisible(false);
@@ -277,6 +284,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.setTitle("Psicolisto");
                 vista.setVisible(true);
                 autor = "";
+                autorApe = "";
                 nombreAutorSeleccionado = "";
                 break;
             case btnAceptarNuevoAutor:
@@ -287,13 +295,19 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 String corrienteA = vista.txtCorrienteNuevoAutor.getText();
                 String notaA = vista.txtNotaNuevoAutor.getText();
                 if(nombreA != "" || apellidosA != ""){
-                    modelo.nuevoAutor(nombreA, apellidosA, fechaNA, fechaDA, corrienteA, notaA, proyecto);
+                    int resuA = modelo.comprobarExistenciaAutor(proyecto, nombreA, apellidosA);
+                    if(resuA == 1){
+                        JOptionPane.showMessageDialog(null, "El autor ya existe en este proyecto.");
+                    }else{
+                        modelo.nuevoAutor(nombreA, apellidosA, fechaNA, fechaDA, corrienteA, notaA, proyecto);
+                        this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
+                        vista.autores.setVisible(true);
+                        vista.nuevoAutor.setVisible(false);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca el nombre o apellido del nuevo autor.");
                 }
-                this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
-                vista.autores.setVisible(true);
-                vista.nuevoAutor.setVisible(false);
+                
                 break;
             case btnCancelarNuevoAutor:
                 vista.nuevoAutor.setVisible(false);
@@ -336,13 +350,18 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 String temaO = vista.txtTemaNuevaObra.getText();
                 String notaO = vista.txtNotaNuevaObra.getText();
                 if(tituloO != ""){
-                    modelo.nuevaObra(tituloO, fechaPO, temaO, notaO, autor);
+                    int resuO = modelo.comprobarExistenciaObra(proyecto, autor, autorApe, tituloO);
+                    if(resuO == 1){
+                        JOptionPane.showMessageDialog(null, "La obra de este autor ya ha sido archivada.");
+                    }else{
+                        modelo.nuevaObra(tituloO, fechaPO, temaO, notaO, autor);
+                        vista.nuevaObra.setVisible(false);
+                        this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
+                        vista.obras.setVisible(true);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca el título de la nueva obra.");
                 }
-                vista.nuevaObra.setVisible(false);
-                this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
-                vista.obras.setVisible(true);
                 break;
             case btnCancelarNuevaObra:
                 vista.nuevaObra.setVisible(false);
@@ -383,13 +402,18 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 String temaE = vista.txtTemaNuevoEnlace.getText();
                 String notaE = vista.txtNotaNuevoEnlace.getText();
                 if(rutaE != ""){
-                    modelo.nuevoEnlace(nombreE, rutaE, temaE, notaE, autor);
+                    int resuE = modelo.comprobarExistenciaEnlace(proyecto, autor, autorApe, nombreE);
+                    if(resuE == 1){
+                        JOptionPane.showMessageDialog(null, "Ya existe otro enlace de este autor con ese nombre.");
+                    }else{
+                        modelo.nuevoEnlace(nombreE, rutaE, temaE, notaE, autor);
+                        vista.nuevoEnlace.setVisible(false);
+                        vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
+                        vista.enlaces.setVisible(true);
+                    }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca la ruta del nuevo enlace.");
                 }
-                vista.nuevoEnlace.setVisible(false);
-                vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
-                vista.enlaces.setVisible(true);
                 break;
             case btnCancelarNuevoEnlace:
                 vista.nuevoEnlace.setVisible(false);
@@ -425,7 +449,9 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
         }
         if (filaAutor > -1){
             nombreAutorSeleccionado = String.valueOf(this.vista.tablaAutores.getValueAt(filaAutor, 0));
+            apellidosAutorSeleccionado = String.valueOf(this.vista.tablaAutores.getValueAt(filaAutor, 1));
             autor = nombreAutorSeleccionado;
+            autorApe = apellidosAutorSeleccionado;
             String notaA = modelo.getNotaAutor(autor);
             vista.notaAutores.setText(notaA);
         }else{
