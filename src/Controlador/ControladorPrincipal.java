@@ -177,6 +177,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 }else{
                     vista.setVisible(false);
                     vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
+                    vista.autores.setTitle("Psicolisto"+" ("+proyecto+")");
                     vista.autores.pack();
                     vista.autores.setLocationRelativeTo(null);
                     vista.autores.setVisible(true);
@@ -251,6 +252,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 }else{
                     vista.autores.setVisible(false);
                     this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
+                    vista.obras.setTitle("Psicolisto"+" ("+proyecto+": "+autor+")");
                     vista.obras.pack();
                     vista.obras.setLocationRelativeTo(null);
                     vista.obras.setVisible(true);
@@ -262,6 +264,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 }else{
                     vista.autores.setVisible(false);
                     this.vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
+                    vista.obras.setTitle("Psicolisto"+" ("+proyecto+": "+autor+")");
                     vista.enlaces.pack();
                     vista.enlaces.setLocationRelativeTo(null);
                     vista.enlaces.setVisible(true);
@@ -269,6 +272,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 break;
             case btnSalirAutores:
                 vista.autores.setVisible(false);
+                vista.setTitle("Psicolisto");
                 vista.setVisible(true);
                 autor = "";
                 nombreAutorSeleccionado = "";
@@ -319,6 +323,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 break;
             case btnSalirObras:
                 vista.obras.setVisible(false);
+                vista.autores.setTitle("Psicolisto"+" ("+proyecto+")");
                 vista.autores.setVisible(true);
                 obra = "";
                 nombreObraSeleccionada = "";
@@ -365,6 +370,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 break;
             case btnSalirEnlaces:
                 vista.enlaces.setVisible(false);
+                vista.autores.setTitle("Psicolisto"+" ("+proyecto+")");
                 vista.autores.setVisible(true);
                 enlace = "";
                 nombreEnlaceSeleccionado = "";
@@ -435,7 +441,9 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             nombreEnlaceSeleccionado = String.valueOf(this.vista.tablaEnlaces.getValueAt(filaEnlace, 0));
             enlace = nombreEnlaceSeleccionado;
             String notaE = modelo.getNotaEnlace(enlace);
+            String rutaE = modelo.getRutaEnlace(enlace);
             vista.notaEnlaces.setText(notaE);
+            vista.rutaEnlaces.setText(rutaE);
         }else{
             nombreEnlaceSeleccionado = "";
         }
