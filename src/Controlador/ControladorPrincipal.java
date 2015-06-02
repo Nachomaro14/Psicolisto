@@ -67,12 +67,14 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
     }
     
     public void iniciar(){
-        try{
+        try{            
             vista.setTitle("Psicolisto");
             
             modelo = new ModeloPrincipal();
             
             this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
+            
+            JOptionPane.showMessageDialog(null, "Bienvenido, Luis.");
             
             this.vista.setVisible(true);
             vista.setLocationRelativeTo(null);

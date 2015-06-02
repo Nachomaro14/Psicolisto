@@ -52,7 +52,6 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNombreNuevoAutor = new javax.swing.JTextField();
-        txtNotaNuevoAutor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtApellidosNuevoAutor = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -61,6 +60,8 @@ public class Interfaz extends javax.swing.JFrame {
         txtCorrienteNuevoAutor = new javax.swing.JTextField();
         txtFechaNacimientoNuevoAutor = new javax.swing.JFormattedTextField();
         txtFechaDefuncionNuevoAutor = new javax.swing.JFormattedTextField();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        txtNotaNuevoAutor = new javax.swing.JTextPane();
         btnAceptarNuevoAutor = new javax.swing.JButton();
         btnCancelarNuevoAutor = new javax.swing.JButton();
         eliminarAutor = new javax.swing.JDialog();
@@ -84,8 +85,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtTemaNuevaObra = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txtNotaNuevaObra = new javax.swing.JTextField();
         txtFechaPublicacionNuevaObra = new javax.swing.JFormattedTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        txtNotaNuevaObra = new javax.swing.JTextPane();
         btnAceptarNuevaObra = new javax.swing.JButton();
         btnCancelarNuevaObra = new javax.swing.JButton();
         eliminarObra = new javax.swing.JDialog();
@@ -112,7 +114,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         txtTemaNuevoEnlace = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        txtNotaNuevoEnlace = new javax.swing.JTextField();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        txtNotaNuevoEnlace = new javax.swing.JTextPane();
         btnAceptarNuevoEnlace = new javax.swing.JButton();
         btnCancelarNuevoEnlace = new javax.swing.JButton();
         eliminarEnlace = new javax.swing.JDialog();
@@ -329,6 +332,20 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel9.setText("Corriente:");
 
+        try {
+            txtFechaNacimientoNuevoAutor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txtFechaDefuncionNuevoAutor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jScrollPane11.setViewportView(txtNotaNuevoAutor);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -337,16 +354,9 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNotaNuevoAutor))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(txtNombreNuevoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))))
+                        .addComponent(jLabel4)
+                        .addGap(71, 71, 71)
+                        .addComponent(txtNombreNuevoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
@@ -358,7 +368,11 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(txtCorrienteNuevoAutor)
                             .addComponent(txtApellidosNuevoAutor)
                             .addComponent(txtFechaNacimientoNuevoAutor)
-                            .addComponent(txtFechaDefuncionNuevoAutor))))
+                            .addComponent(txtFechaDefuncionNuevoAutor)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane11)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -386,9 +400,11 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(txtCorrienteNuevoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNotaNuevoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         btnAceptarNuevoAutor.setText("Aceptar");
@@ -540,6 +556,14 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel14.setText("Nota:");
 
+        try {
+            txtFechaPublicacionNuevaObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jScrollPane12.setViewportView(txtNotaNuevaObra);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -550,7 +574,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(18, 18, 18)
-                        .addComponent(txtNotaNuevaObra))
+                        .addComponent(jScrollPane12))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
@@ -558,7 +582,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(jLabel13))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTemaNuevaObra)
+                            .addComponent(txtTemaNuevaObra, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                             .addComponent(txtTituloNuevaObra)
                             .addComponent(txtFechaPublicacionNuevaObra))))
                 .addContainerGap())
@@ -583,7 +607,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtNotaNuevaObra, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -744,6 +768,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel19.setText("Nota:");
 
+        jScrollPane13.setViewportView(txtNotaNuevoEnlace);
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -751,19 +777,23 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRutaNuevoEnlace)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombreNuevoEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTemaNuevoEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtNotaNuevoEnlace))
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRutaNuevoEnlace)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombreNuevoEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTemaNuevoEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 506, Short.MAX_VALUE))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane13)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -786,7 +816,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtNotaNuevoEnlace, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1032,6 +1062,9 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1063,9 +1096,9 @@ public class Interfaz extends javax.swing.JFrame {
     public javax.swing.JTextField txtNombreNuevoAutor;
     public javax.swing.JTextField txtNombreNuevoEnlace;
     public javax.swing.JTextField txtNombreNuevoProyecto;
-    public javax.swing.JTextField txtNotaNuevaObra;
-    public javax.swing.JTextField txtNotaNuevoAutor;
-    public javax.swing.JTextField txtNotaNuevoEnlace;
+    public javax.swing.JTextPane txtNotaNuevaObra;
+    public javax.swing.JTextPane txtNotaNuevoAutor;
+    public javax.swing.JTextPane txtNotaNuevoEnlace;
     public javax.swing.JTextPane txtNotaNuevoProyecto;
     public javax.swing.JTextField txtRutaNuevoEnlace;
     public javax.swing.JTextField txtTemaNuevaObra;
