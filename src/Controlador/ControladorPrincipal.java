@@ -218,6 +218,8 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                         vista.nuevoProyecto.setVisible(false);
                         vista.tablaProyectos.setModel(modelo.getTablaProyectos());
                         vista.setVisible(true);
+                        vista.txtNombreNuevoProyecto.setText("");
+                        vista.txtNotaNuevoProyecto.setText("");
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca un nombre para el nuevo proyecto.");
@@ -226,6 +228,8 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             case btnCancelarNuevoProyecto:
                 vista.nuevoProyecto.setVisible(false);
                 vista.setVisible(true);
+                vista.txtNombreNuevoProyecto.setText("");
+                vista.txtNotaNuevoProyecto.setText("");
                 break;
             case btnSiEliminarProyecto:
                 modelo.eliminarProyecto(proyecto);
@@ -303,6 +307,12 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                         this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
                         vista.autores.setVisible(true);
                         vista.nuevoAutor.setVisible(false);
+                        vista.txtNombreNuevoAutor.setText("");
+                        vista.txtApellidosNuevoAutor.setText("");
+                        vista.txtFechaNacimientoNuevoAutor.setText("");
+                        vista.txtFechaDefuncionNuevoAutor.setText("");
+                        vista.txtCorrienteNuevoAutor.setText("");
+                        vista.txtNotaNuevoAutor.setText("");
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca el nombre o apellido del nuevo autor.");
@@ -312,6 +322,12 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             case btnCancelarNuevoAutor:
                 vista.nuevoAutor.setVisible(false);
                 vista.autores.setVisible(true);
+                vista.txtNombreNuevoAutor.setText("");
+                vista.txtApellidosNuevoAutor.setText("");
+                vista.txtFechaNacimientoNuevoAutor.setText("");
+                vista.txtFechaDefuncionNuevoAutor.setText("");
+                vista.txtCorrienteNuevoAutor.setText("");
+                vista.txtNotaNuevoAutor.setText("");
                 break;
             case btnSiEliminarAutor:
                 modelo.eliminarAutor(autor);
@@ -358,6 +374,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                         vista.nuevaObra.setVisible(false);
                         this.vista.tablaObras.setModel(modelo.getTablaObras(autor));
                         vista.obras.setVisible(true);
+                        vista.txtTituloNuevaObra.setText("");
+                        vista.txtFechaPublicacionNuevaObra.setText("");
+                        vista.txtTemaNuevaObra.setText("");
+                        vista.txtNotaNuevaObra.setText("");
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca el título de la nueva obra.");
@@ -366,6 +386,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             case btnCancelarNuevaObra:
                 vista.nuevaObra.setVisible(false);
                 vista.obras.setVisible(true);
+                vista.txtTituloNuevaObra.setText("");
+                vista.txtFechaPublicacionNuevaObra.setText("");
+                vista.txtTemaNuevaObra.setText("");
+                vista.txtNotaNuevaObra.setText("");
                 break;
             case btnSiEliminarObra:
                 modelo.eliminarObra(obra);
@@ -410,6 +434,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                         vista.nuevoEnlace.setVisible(false);
                         vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(autor));
                         vista.enlaces.setVisible(true);
+                        vista.txtNombreNuevoEnlace.setText("");
+                        vista.txtRutaNuevoEnlace.setText("");
+                        vista.txtTemaNuevoEnlace.setText("");
+                        vista.txtNotaNuevoEnlace.setText("");
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Introduzca la ruta del nuevo enlace.");
@@ -418,6 +446,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             case btnCancelarNuevoEnlace:
                 vista.nuevoEnlace.setVisible(false);
                 vista.enlaces.setVisible(true);
+                vista.txtNombreNuevoEnlace.setText("");
+                vista.txtRutaNuevoEnlace.setText("");
+                vista.txtTemaNuevoEnlace.setText("");
+                vista.txtNotaNuevoEnlace.setText("");
                 break;
             case btnSiEliminarEnlace:
                 modelo.eliminarEnlace(enlace);

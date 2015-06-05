@@ -354,25 +354,23 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(71, 71, 71)
-                        .addComponent(txtNombreNuevoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane11))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombreNuevoAutor)
                             .addComponent(txtCorrienteNuevoAutor)
                             .addComponent(txtApellidosNuevoAutor)
-                            .addComponent(txtFechaNacimientoNuevoAutor)
-                            .addComponent(txtFechaDefuncionNuevoAutor)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane11)))
+                            .addComponent(txtFechaNacimientoNuevoAutor, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(txtFechaDefuncionNuevoAutor))))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -550,14 +548,14 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel11.setText("Título:");
 
-        jLabel12.setText("Fecha de publicación:");
+        jLabel12.setText("Año de publicación:");
 
         jLabel13.setText("Tema:");
 
         jLabel14.setText("Nota:");
 
         try {
-            txtFechaPublicacionNuevaObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtFechaPublicacionNuevaObra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -582,7 +580,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(jLabel13))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTemaNuevaObra, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                            .addComponent(txtTemaNuevaObra, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                             .addComponent(txtTituloNuevaObra)
                             .addComponent(txtFechaPublicacionNuevaObra))))
                 .addContainerGap())
@@ -689,6 +687,7 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(tablaEnlaces);
 
+        notaEnlaces.setEditable(false);
         notaEnlaces.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane7.setViewportView(notaEnlaces);
 

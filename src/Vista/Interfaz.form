@@ -449,30 +449,27 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                              <Component id="txtNombreNuevoAutor" pref="236" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jScrollPane11" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtNombreNuevoAutor" max="32767" attributes="0"/>
                                   <Component id="txtCorrienteNuevoAutor" max="32767" attributes="0"/>
                                   <Component id="txtApellidosNuevoAutor" max="32767" attributes="0"/>
-                                  <Component id="txtFechaNacimientoNuevoAutor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtFechaNacimientoNuevoAutor" alignment="0" pref="236" max="32767" attributes="0"/>
                                   <Component id="txtFechaDefuncionNuevoAutor" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jScrollPane11" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -938,7 +935,7 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtTemaNuevaObra" pref="227" max="32767" attributes="0"/>
+                                  <Component id="txtTemaNuevaObra" pref="237" max="32767" attributes="0"/>
                                   <Component id="txtTituloNuevaObra" max="32767" attributes="0"/>
                                   <Component id="txtFechaPublicacionNuevaObra" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -992,7 +989,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Fecha de publicaci&#xf3;n:"/>
+                <Property name="text" type="java.lang.String" value="A&#xf1;o de publicaci&#xf3;n:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
@@ -1013,7 +1010,7 @@
             <Component class="javax.swing.JFormattedTextField" name="txtFechaPublicacionNuevaObra">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="##/##/####" subtype="-1" type="5"/>
+                  <Format format="####" subtype="-1" type="5"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -1260,6 +1257,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="notaEnlaces">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Nota"/>
