@@ -113,47 +113,55 @@ public class ModeloPrincipal extends Database{
         return modelotabla;
     }
     
-    public DefaultTableModel getTablaObras(String a){
+    public DefaultTableModel getTablaObras(String p, String a){
         
         DefaultTableModel modelotabla = new ModeloTablaNoEditable();
         
         String[] columnNames = {"Título","Publicación","Tema"};
         int registros = 0;
-        
         try{
-            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Autores WHERE Nombre = '"+a+"'");
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+p+"'");
             ResultSet res1 = pstm1.executeQuery();
             res1.next();
-            int id = res1.getInt("ID_Autor");
+            int id1 = res1.getInt("ID_Proyecto");
             res1.close();
             try{
-                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT count(*) as total FROM Obras WHERE ID_Autor = "+id);
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Autores WHERE Nombre = '"+a+"' AND ID_Proyecto = "+id1);
                 ResultSet res2 = pstm2.executeQuery();
                 res2.next();
-                registros = res2.getInt("total");
-                res2.close();
+                int id2 = res2.getInt("ID_Autor");
+                res1.close();
+                try{
+                    PreparedStatement pstm3 = this.getConexion().prepareStatement("SELECT count(*) as total FROM Obras WHERE ID_Autor = "+id2);
+                    ResultSet res3 = pstm3.executeQuery();
+                    res3.next();
+                    registros = res3.getInt("total");
+                    res3.close();
+                }catch(SQLException e){
+                    System.err.println( e.getMessage() );
+                }
+
+                Object[][] data = new String[registros][3];
+
+                try{
+
+                    PreparedStatement pstm3 = this.getConexion().prepareStatement("SELECT * FROM Obras WHERE ID_Autor = "+id2);
+                    ResultSet res3 = pstm3.executeQuery();
+                    int i = 0;
+                    while(res3.next()){
+                        data[i][0] = res3.getString("Titulo");
+                        data[i][1] = res3.getString("Fecha_publicacion");
+                        data[i][2] = res3.getString("Tema");
+                        i++;
+                    }
+                    res3.close();
+
+                    modelotabla.setDataVector(data, columnNames);
+                }catch(SQLException e){
+                    System.err.println(e.getMessage());
+                }
             }catch(SQLException e){
                 System.err.println( e.getMessage() );
-            }
-
-            Object[][] data = new String[registros][3];
-
-            try{
-
-                PreparedStatement pstm3 = this.getConexion().prepareStatement("SELECT * FROM Obras WHERE ID_Autor = "+id);
-                ResultSet res3 = pstm3.executeQuery();
-                int i = 0;
-                while(res3.next()){
-                    data[i][0] = res3.getString("Titulo");
-                    data[i][1] = res3.getString("Fecha_publicacion");
-                    data[i][2] = res3.getString("Tema");
-                    i++;
-                }
-                res3.close();
-
-                modelotabla.setDataVector(data, columnNames);
-            }catch(SQLException e){
-                System.err.println(e.getMessage());
             }
         }catch(SQLException e){
             System.err.println( e.getMessage() );
@@ -162,46 +170,54 @@ public class ModeloPrincipal extends Database{
         return modelotabla;
     }
     
-    public DefaultTableModel getTablaEnlaces(String a){
+    public DefaultTableModel getTablaEnlaces(String p, String a){
         
         DefaultTableModel modelotabla = new ModeloTablaNoEditable();
         
         String[] columnNames = {"Nombre","Tema"};
         int registros = 0;
-        
         try{
-            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Autores WHERE Nombre = '"+a+"'");
-            ResultSet res1 = pstm1.executeQuery();
-            res1.next();
-            int id = res1.getInt("ID_Autor");
-            res1.close();
+            PreparedStatement pstm = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+p+"'");
+            ResultSet res = pstm.executeQuery();
+            res.next();
+            int id1 = res.getInt("ID_Proyecto");
+            res.close();
             try{
-                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT count(*) as total FROM Enlaces WHERE ID_Autor = "+id);
-                ResultSet res2 = pstm2.executeQuery();
-                res2.next();
-                registros = res2.getInt("total");
-                res2.close();
+                PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Autores WHERE Nombre = '"+a+"' AND ID_Proyecto = "+id1);
+                ResultSet res1 = pstm1.executeQuery();
+                res1.next();
+                int id = res1.getInt("ID_Autor");
+                res1.close();
+                try{
+                    PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT count(*) as total FROM Enlaces WHERE ID_Autor = "+id);
+                    ResultSet res2 = pstm2.executeQuery();
+                    res2.next();
+                    registros = res2.getInt("total");
+                    res2.close();
+                }catch(SQLException e){
+                    System.err.println( e.getMessage() );
+                }
+
+                Object[][] data = new String[registros][2];
+
+                try{
+
+                    PreparedStatement pstm3 = this.getConexion().prepareStatement("SELECT * FROM Enlaces WHERE ID_Autor = "+id);
+                    ResultSet res3 = pstm3.executeQuery();
+                    int i = 0;
+                    while(res3.next()){
+                        data[i][0] = res3.getString("Nombre");
+                        data[i][1] = res3.getString("Tema");
+                        i++;
+                    }
+                    res3.close();
+
+                    modelotabla.setDataVector(data, columnNames);
+                }catch(SQLException e){
+                    System.err.println(e.getMessage());
+                }
             }catch(SQLException e){
                 System.err.println( e.getMessage() );
-            }
-
-            Object[][] data = new String[registros][2];
-
-            try{
-
-                PreparedStatement pstm3 = this.getConexion().prepareStatement("SELECT * FROM Enlaces WHERE ID_Autor = "+id);
-                ResultSet res3 = pstm3.executeQuery();
-                int i = 0;
-                while(res3.next()){
-                    data[i][0] = res3.getString("Nombre");
-                    data[i][1] = res3.getString("Tema");
-                    i++;
-                }
-                res3.close();
-
-                modelotabla.setDataVector(data, columnNames);
-            }catch(SQLException e){
-                System.err.println(e.getMessage());
             }
         }catch(SQLException e){
             System.err.println( e.getMessage() );
@@ -380,39 +396,89 @@ public class ModeloPrincipal extends Database{
         }
     }
     
-    public void eliminarAutor(String autor){
+    public void eliminarAutor(String proyecto, String autor){
         try{
-            PreparedStatement pstm = this.getConexion().prepareStatement("DELETE FROM Autores WHERE Nombre = '"+autor+"'");
-            pstm.execute();
-            pstm.close();
-            JOptionPane.showMessageDialog(null, "Autor eliminado.");
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al eliminar autor.");
-            ex.getStackTrace();
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+proyecto+"'");
+            ResultSet res1 = pstm1.executeQuery();
+            res1.next();
+            int id = res1.getInt("ID_Proyecto");
+            res1.close();
+            try{
+                PreparedStatement pstm = this.getConexion().prepareStatement("DELETE FROM Autores WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id);
+                pstm.execute();
+                pstm.close();
+                JOptionPane.showMessageDialog(null, "Autor eliminado.");
+            }catch(SQLException ex1){
+                JOptionPane.showMessageDialog(null, "Error al eliminar autor.");
+                ex1.getStackTrace();
+            }
+        }catch(SQLException ex2){
+            JOptionPane.showMessageDialog(null, "Error al obtener ID.");
+            ex2.getStackTrace();
         }
     }
     
-    public void eliminarObra(String obra){
+    public void eliminarObra(String proyecto, String autor, String obra){
         try{
-            PreparedStatement pstm = this.getConexion().prepareStatement("DELETE FROM Obras WHERE Titulo = '"+obra+"'");
-            pstm.execute();
-            pstm.close();
-            JOptionPane.showMessageDialog(null, "Obra eliminada.");
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al eliminar obra.");
-            ex.getStackTrace();
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+proyecto+"'");
+            ResultSet res1 = pstm1.executeQuery();
+            res1.next();
+            int id1 = res1.getInt("ID_Proyecto");
+            res1.close();
+            try{
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Proyectos WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
+                ResultSet res2 = pstm2.executeQuery();
+                res1.next();
+                int id2 = res2.getInt("ID_Autor");
+                res1.close();
+                try{
+                    PreparedStatement pstm3 = this.getConexion().prepareStatement("DELETE FROM Obras WHERE Titulo = '"+obra+"' AND ID_Autor = "+id2);
+                    pstm3.execute();
+                    pstm3.close();
+                    JOptionPane.showMessageDialog(null, "Obra eliminada.");
+                }catch(SQLException ex1){
+                    JOptionPane.showMessageDialog(null, "Error al eliminar obra.");
+                    ex1.getStackTrace();
+                }
+            }catch(SQLException ex2){
+                JOptionPane.showMessageDialog(null, "Error al obtener ID_Autor.");
+                ex2.getStackTrace();
+            }
+        }catch(SQLException ex3){
+            JOptionPane.showMessageDialog(null, "Error al obtener ID_Proyecto.");
+            ex3.getStackTrace();
         }
     }
     
-    public void eliminarEnlace(String enlace){
+    public void eliminarEnlace(String proyecto, String autor, String enlace){
         try{
-            PreparedStatement pstm = this.getConexion().prepareStatement("DELETE FROM Enlaces WHERE Nombre = '"+enlace+"'");
-            pstm.execute();
-            pstm.close();
-            JOptionPane.showMessageDialog(null, "Obra eliminada.");
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error al eliminar obra.");
-            ex.getStackTrace();
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+proyecto+"'");
+            ResultSet res1 = pstm1.executeQuery();
+            res1.next();
+            int id1 = res1.getInt("ID_Proyecto");
+            res1.close();
+            try{
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Proyectos WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
+                ResultSet res2 = pstm2.executeQuery();
+                res1.next();
+                int id2 = res2.getInt("ID_Autor");
+                res1.close();
+                try{
+                    PreparedStatement pstm3 = this.getConexion().prepareStatement("DELETE FROM Enlaces WHERE Nombre = '"+enlace+"' AND ID_Autor = "+id2);
+                    pstm3.execute();
+                    pstm3.close();
+                    JOptionPane.showMessageDialog(null, "Enlace eliminado.");
+                }catch(SQLException ex1){
+                    JOptionPane.showMessageDialog(null, "Error al eliminar enlace.");
+                    ex1.getStackTrace();
+                }
+            }catch(SQLException ex2){
+                JOptionPane.showMessageDialog(null, "Error al obtener ID_Autor.");
+                ex2.getStackTrace();
+            }
+        }catch(SQLException ex3){
+            JOptionPane.showMessageDialog(null, "Error al obtener ID_Proyecto.");
+            ex3.getStackTrace();
         }
     }
     
@@ -483,16 +549,16 @@ public class ModeloPrincipal extends Database{
     
     public int comprobarExistenciaEnlace(String p, String n, String a, String en){
         int resu = 0;
-        String titulo = "";
+        String nombre = "";
         try{
             PreparedStatement pstm = this.getConexion().prepareStatement("SELECT Nombre FROM Enlaces WHERE Nombre = '"+en+"'"
                     + " AND ID_Autor = (SELECT ID_Autor FROM Autores WHERE Nombre = '"+n+"'"
                     + " AND Apellidos = '"+a+"' AND ID_Proyecto = (SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+p+"'))");
             ResultSet res = pstm.executeQuery();
             res.next();
-            titulo = res.getString("Nombre");
+            nombre = res.getString("Nombre");
             res.close();
-            if(titulo.equals("")){
+            if(nombre.equals("")){
                 resu = 0;
             }else{
                 resu = 1;
@@ -501,5 +567,103 @@ public class ModeloPrincipal extends Database{
             System.err.println( e.getMessage() );
         }
         return resu;
+    }
+    
+    public void actualizarNotaProyecto(String nuevaNota, String proyecto){
+        try{
+            PreparedStatement pstm = this.getConexion().prepareStatement("UPDATE Proyectos SET Nota = '"+nuevaNota+"' WHERE Nombre = '"+proyecto+"'");
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null, "Nota actualizada.");
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al actualizar nota.");
+            ex.getStackTrace();
+        }
+    }
+    
+    public void actualizarNotaAutor(String nuevaNota, String proyecto, String autor){
+        try{
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+proyecto+"'");
+            ResultSet res1 = pstm1.executeQuery();
+            res1.next();
+            int id = res1.getInt("ID_Proyecto");
+            res1.close();
+            try{
+                PreparedStatement pstm = this.getConexion().prepareStatement("UPDATE Autores SET Nota = '"+nuevaNota+"' WHERE Nombre = '"+autor+"' AND ID_Autor = "+id);
+                pstm.execute();
+                pstm.close();
+                JOptionPane.showMessageDialog(null, "Nota actualizada.");
+            }catch(SQLException ex1){
+                JOptionPane.showMessageDialog(null, "Error al actualizar nota.");
+                ex1.getStackTrace();
+            }
+        }catch(SQLException ex2){
+            JOptionPane.showMessageDialog(null, "Error al obtener ID.");
+            ex2.getStackTrace();
+        }
+    }
+    
+    public void actualizarNotaObra(String nuevaNota, String proyecto, String autor, String obra){
+        try{
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+proyecto+"'");
+            ResultSet res1 = pstm1.executeQuery();
+            res1.next();
+            int id1 = res1.getInt("ID_Proyecto");
+            res1.close();
+            try{
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Proyectos WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
+                ResultSet res2 = pstm2.executeQuery();
+                res1.next();
+                int id2 = res2.getInt("ID_Autor");
+                res1.close();
+                try{
+                    PreparedStatement pstm = this.getConexion().prepareStatement("UPDATE Obras SET Nota = '"+nuevaNota+"' WHERE Titulo = '"+obra+"' AND ID_Autor = "+id2);
+                    pstm.execute();
+                    pstm.close();
+                    JOptionPane.showMessageDialog(null, "Nota actualizada.");
+                }catch(SQLException ex1){
+                    JOptionPane.showMessageDialog(null, "Error al actualizar nota.");
+                    ex1.getStackTrace();
+                }
+            }catch(SQLException ex2){
+                JOptionPane.showMessageDialog(null, "Error al obtener ID_Autor.");
+                ex2.getStackTrace();
+            }
+        }catch(SQLException ex3){
+            JOptionPane.showMessageDialog(null, "Error al obtener ID_Proyecto.");
+            ex3.getStackTrace();
+        }
+    }
+    
+    public void actualizarNotaRutaEnlace(String nuevaRuta, String nuevaNota, String proyecto, String autor, String enlace){
+        try{
+            PreparedStatement pstm1 = this.getConexion().prepareStatement("SELECT ID_Proyecto FROM Proyectos WHERE Nombre = '"+proyecto+"'");
+            ResultSet res1 = pstm1.executeQuery();
+            res1.next();
+            int id1 = res1.getInt("ID_Proyecto");
+            res1.close();
+            try{
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Proyectos WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
+                ResultSet res2 = pstm2.executeQuery();
+                res1.next();
+                int id2 = res2.getInt("ID_Autor");
+                res1.close();
+                try{
+                    PreparedStatement pstm = this.getConexion().prepareStatement("UPDATE Enlaces SET Nota = '"+nuevaNota+"', SET Ruta = '"+nuevaRuta+"' WHERE Nombre = '"+enlace+"' AND ID_Autor = "+id2);
+                    pstm.execute();
+                    pstm.close();
+                    JOptionPane.showMessageDialog(null, "Nota y ruta actualizadas.");
+                }catch(SQLException ex1){
+                    JOptionPane.showMessageDialog(null, "Error al actualizar nota o ruta.");
+                    ex1.getStackTrace();
+                }
+            }catch(SQLException ex2){
+                JOptionPane.showMessageDialog(null, "Error al obtener ID_Autor.");
+                ex2.getStackTrace();
+            }
+        }catch(SQLException ex3){
+            JOptionPane.showMessageDialog(null, "Error al obtener ID_Proyecto.");
+            ex3.getStackTrace();
+        }
     }
 }

@@ -246,11 +246,13 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnEliminarAutor" min="-2" pref="131" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnObras" min="-2" pref="175" max="-2" attributes="0"/>
+                              <Component id="btnObras" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnEnlaces" min="-2" pref="175" max="-2" attributes="0"/>
+                              <Component id="btnEnlaces" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnSalirAutores" pref="312" max="32767" attributes="0"/>
+                              <Component id="btnModificarAutor" min="-2" pref="145" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnSalirAutores" pref="209" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -272,6 +274,7 @@
                           <Component id="btnEliminarAutor" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnObras" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnEnlaces" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnModificarAutor" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -339,7 +342,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="notaAutores">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Nota"/>
@@ -387,6 +389,14 @@
             <Component class="javax.swing.JButton" name="btnSalirAutores">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salir"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnModificarAutor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -734,12 +744,17 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane5" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnAñadirObra" min="-2" pref="184" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnEliminarObra" min="-2" pref="182" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnAñadirObra" min="-2" pref="184" max="-2" attributes="0"/>
+                                  <Component id="btnModificarObra" min="-2" pref="184" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnSalirObras" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnEliminarObra" alignment="1" pref="182" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="btnSalirObras" pref="392" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -759,7 +774,10 @@
                                   <Component id="btnEliminarObra" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnSalirObras" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnSalirObras" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btnModificarObra" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -828,7 +846,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="notaObras">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Nota"/>
@@ -860,6 +877,14 @@
             <Component class="javax.swing.JButton" name="btnSalirObras">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salir"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnModificarObra">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1159,12 +1184,17 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnAñadirEnlace" min="-2" pref="184" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnEliminarEnlace" min="-2" pref="182" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnAñadirEnlace" min="-2" pref="184" max="-2" attributes="0"/>
+                                  <Component id="btnModificarEnlace" min="-2" pref="184" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnSalirEnlaces" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnEliminarEnlace" alignment="1" pref="182" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="btnSalirEnlaces" alignment="0" pref="392" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1186,7 +1216,10 @@
                                   <Component id="btnEliminarEnlace" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="btnSalirEnlaces" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnSalirEnlaces" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btnModificarEnlace" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane8" max="32767" attributes="0"/>
@@ -1257,7 +1290,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="notaEnlaces">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Nota"/>
@@ -1303,7 +1335,6 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="rutaEnlaces">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder title="Ruta"/>
@@ -1316,6 +1347,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btnModificarEnlace">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modificar"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -1646,8 +1685,14 @@
                       <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane9" min="-2" pref="242" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane9" min="-2" pref="242" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="btnModificarProyecto" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1655,8 +1700,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane9" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="233" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -1664,15 +1708,16 @@
                               <Component id="btnAccederProyecto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               <Component id="btnNuevoProyecto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnSalirInterfaz" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="btnEliminarProyecto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane9" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnSalirInterfaz" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btnEliminarProyecto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="btnModificarProyecto" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1743,7 +1788,6 @@
           <SubComponents>
             <Component class="javax.swing.JTextPane" name="notaProyectos">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="Nota"/>
@@ -1756,6 +1800,14 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnModificarProyecto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Modificar"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
