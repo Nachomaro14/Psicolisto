@@ -594,11 +594,11 @@ public class ModeloPrincipal extends Database{
                 pstm.close();
                 JOptionPane.showMessageDialog(null, "Nota actualizada.");
             }catch(SQLException ex1){
-                JOptionPane.showMessageDialog(null, "Error al actualizar nota.");
+                JOptionPane.showMessageDialog(null, "Seleccione un autor.");
                 ex1.getStackTrace();
             }
         }catch(SQLException ex2){
-            JOptionPane.showMessageDialog(null, "Error al obtener ID.");
+            JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
             ex2.getStackTrace();
         }
     }
@@ -622,15 +622,15 @@ public class ModeloPrincipal extends Database{
                     pstm.close();
                     JOptionPane.showMessageDialog(null, "Nota actualizada.");
                 }catch(SQLException ex1){
-                    JOptionPane.showMessageDialog(null, "Error al actualizar nota.");
+                    JOptionPane.showMessageDialog(null, "Seleccione una obra.");
                     ex1.getStackTrace();
                 }
             }catch(SQLException ex2){
-                JOptionPane.showMessageDialog(null, "Error al obtener ID_Autor.");
+                JOptionPane.showMessageDialog(null, "Seleccione un autor.");
                 ex2.getStackTrace();
             }
         }catch(SQLException ex3){
-            JOptionPane.showMessageDialog(null, "Error al obtener ID_Proyecto.");
+            JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
             ex3.getStackTrace();
         }
     }
@@ -654,15 +654,15 @@ public class ModeloPrincipal extends Database{
                     pstm.close();
                     JOptionPane.showMessageDialog(null, "Nota y ruta actualizadas.");
                 }catch(SQLException ex1){
-                    JOptionPane.showMessageDialog(null, "Error al actualizar nota o ruta.");
+                    JOptionPane.showMessageDialog(null, "Seleccione un enlace.");
                     ex1.getStackTrace();
                 }
             }catch(SQLException ex2){
-                JOptionPane.showMessageDialog(null, "Error al obtener ID_Autor.");
+                JOptionPane.showMessageDialog(null, "Seleccione un autor.");
                 ex2.getStackTrace();
             }
         }catch(SQLException ex3){
-            JOptionPane.showMessageDialog(null, "Error al obtener ID_Proyecto.");
+            JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
             ex3.getStackTrace();
         }
     }

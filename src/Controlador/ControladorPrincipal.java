@@ -211,7 +211,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.nuevoProyecto.setVisible(true);
                 break;
             case btnEliminarProyecto:
-                if(nombreProyectoSeleccionado.equals("") || nombreProyectoSeleccionado == null || nombreProyectoSeleccionado.isEmpty()){
+                if(nombreProyectoSeleccionado.equals("") || nombreProyectoSeleccionado == null){
                     JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
                 }else{
                     vista.setVisible(false);
@@ -500,41 +500,25 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.enlaces.setVisible(true);
                 break;
             case btnModificarProyecto:
-                if(nombreProyectoSeleccionado.equals("") || nombreProyectoSeleccionado == null || nombreProyectoSeleccionado.isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Seleccione un proyecto.");
-                }else{
-                    String nuevaNotaP = vista.notaProyectos.getText();
-                    modelo.actualizarNotaProyecto(nuevaNotaP, nombreProyectoSeleccionado);
-                    vista.tablaProyectos.setModel(modelo.getTablaProyectos());
-                }
+                String nuevaNotaP = vista.notaProyectos.getText();
+                modelo.actualizarNotaProyecto(nuevaNotaP, nombreProyectoSeleccionado);
+                vista.tablaProyectos.setModel(modelo.getTablaProyectos());
                 break;
             case btnModificarAutor:
-                if(nombreAutorSeleccionado.equals("") || nombreAutorSeleccionado == null || nombreAutorSeleccionado.isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Seleccione un autor.");
-                }else{
-                    String nuevaNotaA = vista.notaAutores.getText();
-                    modelo.actualizarNotaAutor(nuevaNotaA, proyecto, nombreAutorSeleccionado);
-                    vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
-                }
+                String nuevaNotaA = vista.notaAutores.getText();
+                modelo.actualizarNotaAutor(nuevaNotaA, proyecto, nombreAutorSeleccionado);
+                vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
                 break;
             case btnModificarObra:
-                if(nombreObraSeleccionada.equals("") || nombreObraSeleccionada == null || nombreObraSeleccionada.isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Seleccione una obra.");
-                }else{
-                    String nuevaNotaO = vista.notaObras.getText();
-                    modelo.actualizarNotaObra(nuevaNotaO, proyecto, autor, nombreObraSeleccionada);
-                    vista.tablaObras.setModel(modelo.getTablaObras(proyecto, autor));
-                }
+                String nuevaNotaO = vista.notaObras.getText();
+                modelo.actualizarNotaObra(nuevaNotaO, proyecto, autor, nombreObraSeleccionada);
+                vista.tablaObras.setModel(modelo.getTablaObras(proyecto, autor));
                 break;
             case btnModificarEnlace:
-                if(nombreEnlaceSeleccionado.equals("") || nombreEnlaceSeleccionado == null || nombreEnlaceSeleccionado.isEmpty()){
-                    JOptionPane.showMessageDialog(null, "Seleccione un enlace.");
-                }else{
-                    String nuevaNotaE = vista.notaEnlaces.getText();
-                    String nuevaRutaE = vista.rutaEnlaces.getText();
-                    modelo.actualizarNotaRutaEnlace(nuevaRutaE, nuevaNotaE, proyecto, autor, nombreEnlaceSeleccionado);
-                    vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(proyecto, autor));
-                }
+                String nuevaNotaE = vista.notaEnlaces.getText();
+                String nuevaRutaE = vista.rutaEnlaces.getText();
+                modelo.actualizarNotaRutaEnlace(nuevaRutaE, nuevaNotaE, proyecto, autor, nombreEnlaceSeleccionado);
+                vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(proyecto, autor));
                 break;
         }
     }
