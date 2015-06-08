@@ -51,6 +51,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         txtAutorSeleccionado = new javax.swing.JLabel();
         txtApellidosAutorSeleccionado = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         nuevoAutor = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -84,6 +85,7 @@ public class Interfaz extends javax.swing.JFrame {
         btnModificarObra = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         txtObraSeleccionada = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         nuevaObra = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -115,6 +117,7 @@ public class Interfaz extends javax.swing.JFrame {
         btnModificarEnlace = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         txtEnlaceSeleccionado = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
         nuevoEnlace = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
@@ -144,6 +147,9 @@ public class Interfaz extends javax.swing.JFrame {
         btnModificarProyecto = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
         txtProyectoSeleccionado = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+
+        nuevoProyecto.setResizable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Proyecto"));
 
@@ -214,6 +220,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        eliminarProyecto.setResizable(false);
+
         jLabel3.setText("¿Estás seguro de que deseas eliminar el proyecto?");
 
         btnSiEliminarProyecto.setText("SÍ");
@@ -247,7 +255,10 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        autores.setResizable(false);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Autores"));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaAutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -262,75 +273,46 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaAutores);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 1006, 376));
+
         notaAutores.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane3.setViewportView(notaAutores);
 
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 449, 1006, 144));
+
         btnAñadirAutor.setText("Añadir Autor");
+        jPanel1.add(btnAñadirAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 611, 131, 40));
 
         btnEliminarAutor.setText("Eliminar Autor");
+        jPanel1.add(btnEliminarAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 611, 131, 40));
 
         btnObras.setText("Obras");
+        jPanel1.add(btnObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 611, 145, 40));
 
         btnEnlaces.setText("Enlaces");
+        jPanel1.add(btnEnlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(477, 611, 145, 40));
 
         btnSalirAutores.setText("Salir");
+        jPanel1.add(btnSalirAutores, new org.netbeans.lib.awtextra.AbsoluteConstraints(803, 611, 219, 40));
 
         btnModificarAutor.setText("Modificar");
+        jPanel1.add(btnModificarAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 611, 145, 40));
 
+        jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Autor:");
+        jLabel23.setOpaque(true);
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 409, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAñadirAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnObras, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEnlaces, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalirAutores, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtApellidosAutorSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAutorSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(txtAutorSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtApellidosAutorSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalirAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAñadirAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnObras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnlaces, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        txtAutorSeleccionado.setBackground(new java.awt.Color(255, 255, 255));
+        txtAutorSeleccionado.setOpaque(true);
+        jPanel1.add(txtAutorSeleccionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 409, 960, 14));
+
+        txtApellidosAutorSeleccionado.setBackground(new java.awt.Color(255, 255, 255));
+        txtApellidosAutorSeleccionado.setOpaque(true);
+        jPanel1.add(txtApellidosAutorSeleccionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 429, 960, 14));
+
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marc2.JPG"))); // NOI18N
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 14, 1040, 650));
 
         javax.swing.GroupLayout autoresLayout = new javax.swing.GroupLayout(autores.getContentPane());
         autores.getContentPane().setLayout(autoresLayout);
@@ -338,16 +320,18 @@ public class Interfaz extends javax.swing.JFrame {
             autoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(autoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         autoresLayout.setVerticalGroup(
             autoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(autoresLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, autoresLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        nuevoAutor.setResizable(false);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Autor"));
 
@@ -466,6 +450,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        eliminarAutor.setResizable(false);
+
         jLabel10.setText("¿Estás seguro de que deseas eliminar el autor?");
 
         btnSiEliminarAutor.setText("SÍ");
@@ -499,7 +485,10 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        obras.setResizable(false);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Obras"));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaObras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -514,65 +503,36 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(tablaObras);
 
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 586, 376));
+
         notaObras.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane5.setViewportView(notaObras);
 
+        jPanel2.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 52, 392, 224));
+
         btnAñadirObra.setText("Añadir Obra");
+        jPanel2.add(btnAñadirObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 294, 184, 40));
 
         btnEliminarObra.setText("Eliminar Obra");
+        jPanel2.add(btnEliminarObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 294, 182, 40));
 
         btnSalirObras.setText("Salir");
+        jPanel2.add(btnSalirObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 363, 182, 40));
 
         btnModificarObra.setText("Modificar");
+        jPanel2.add(btnModificarObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 363, 184, 40));
 
+        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Obra:");
+        jLabel21.setOpaque(true);
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 27, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAñadirObra, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSalirObras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtObraSeleccionada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtObraSeleccionada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAñadirObra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalirObras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        txtObraSeleccionada.setBackground(new java.awt.Color(255, 255, 255));
+        txtObraSeleccionada.setOpaque(true);
+        jPanel2.add(txtObraSeleccionada, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 27, 350, 14));
+
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marc3.jpg"))); // NOI18N
+        jPanel2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 14, 1030, 410));
 
         javax.swing.GroupLayout obrasLayout = new javax.swing.GroupLayout(obras.getContentPane());
         obras.getContentPane().setLayout(obrasLayout);
@@ -590,6 +550,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        nuevaObra.setResizable(false);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Nueva Obra"));
 
@@ -686,6 +648,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        eliminarObra.setResizable(false);
+
         jLabel15.setText("¿Estás seguro de que deseas eliminar la obra?");
 
         btnSiEliminarObra.setText("SÍ");
@@ -719,7 +683,10 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        enlaces.setResizable(false);
+
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Enlaces"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaEnlaces.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -734,74 +701,41 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(tablaEnlaces);
 
+        jPanel3.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, 586, 249));
+
         notaEnlaces.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane7.setViewportView(notaEnlaces);
 
+        jPanel3.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 52, 392, 224));
+
         btnAñadirEnlace.setText("Añadir Enlace");
+        jPanel3.add(btnAñadirEnlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 294, 184, 40));
 
         btnEliminarEnlace.setText("Eliminar Enlace");
+        jPanel3.add(btnEliminarEnlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 294, 182, 40));
 
         btnSalirEnlaces.setText("Salir");
+        jPanel3.add(btnSalirEnlaces, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 363, 182, 40));
 
         rutaEnlaces.setBorder(javax.swing.BorderFactory.createTitledBorder("Ruta"));
         jScrollPane8.setViewportView(rutaEnlaces);
 
+        jPanel3.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 294, 586, 109));
+
         btnModificarEnlace.setText("Modificar");
+        jPanel3.add(btnModificarEnlace, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 363, 184, 40));
 
+        jLabel22.setBackground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Enlace:");
+        jLabel22.setOpaque(true);
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 27, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-                    .addComponent(jScrollPane8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAñadirEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificarEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSalirEnlaces, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarEnlace, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEnlaceSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEnlaceSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane7)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAñadirEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalirEnlaces, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificarEnlace, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane8))
-                .addContainerGap())
-        );
+        txtEnlaceSeleccionado.setBackground(new java.awt.Color(255, 255, 255));
+        txtEnlaceSeleccionado.setOpaque(true);
+        jPanel3.add(txtEnlaceSeleccionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 27, 340, 14));
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marc4.jpg"))); // NOI18N
+        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1020, 390));
 
         javax.swing.GroupLayout enlacesLayout = new javax.swing.GroupLayout(enlaces.getContentPane());
         enlaces.getContentPane().setLayout(enlacesLayout);
@@ -819,6 +753,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        nuevoEnlace.setResizable(false);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Enlace"));
 
@@ -920,6 +856,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        eliminarEnlace.setResizable(false);
+
         jLabel20.setText("¿Estás seguro de que deseas eliminar el enlace?");
 
         btnSiEliminarEnlace.setText("SÍ");
@@ -954,8 +892,10 @@ public class Interfaz extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         proyectos.setBorder(javax.swing.BorderFactory.createTitledBorder("Proyectos"));
+        proyectos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaProyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -970,91 +910,55 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaProyectos);
 
+        proyectos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 27, -1, 233));
+
         btnAccederProyecto.setText("Acceder");
+        proyectos.add(btnAccederProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 282, 217, 35));
 
         btnSalirInterfaz.setText("Salir");
+        proyectos.add(btnSalirInterfaz, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 333, 217, 35));
 
         btnNuevoProyecto.setText("Nuevo Proyecto");
+        proyectos.add(btnNuevoProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 282, 217, 35));
 
         btnEliminarProyecto.setText("Eliminar Proyecto");
+        proyectos.add(btnEliminarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 333, 217, 35));
 
         notaProyectos.setBorder(javax.swing.BorderFactory.createTitledBorder("Nota"));
         jScrollPane9.setViewportView(notaProyectos);
 
+        proyectos.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 47, 242, 270));
+
         btnModificarProyecto.setText("Modificar");
+        proyectos.add(btnModificarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 333, 252, 35));
 
+        jLabel24.setBackground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Proyecto:");
+        jLabel24.setOpaque(true);
+        proyectos.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(486, 27, -1, -1));
 
-        javax.swing.GroupLayout proyectosLayout = new javax.swing.GroupLayout(proyectos);
-        proyectos.setLayout(proyectosLayout);
-        proyectosLayout.setHorizontalGroup(
-            proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(proyectosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(proyectosLayout.createSequentialGroup()
-                        .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAccederProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEliminarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSalirInterfaz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, proyectosLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnNuevoProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificarProyecto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(proyectosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(proyectosLayout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtProyectoSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        proyectosLayout.setVerticalGroup(
-            proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(proyectosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(proyectosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAccederProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnNuevoProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(proyectosLayout.createSequentialGroup()
-                        .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(txtProyectoSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9)))
-                .addGap(16, 16, 16)
-                .addGroup(proyectosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalirInterfaz, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        txtProyectoSeleccionado.setBackground(new java.awt.Color(255, 255, 255));
+        txtProyectoSeleccionado.setOpaque(true);
+        proyectos.add(txtProyectoSeleccionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 27, 190, 14));
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Marc1.jpg"))); // NOI18N
+        proyectos.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 760, 370));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(proyectos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10)
+                .addComponent(proyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(proyectos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(11, 11, 11)
+                .addComponent(proyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -1132,6 +1036,10 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
