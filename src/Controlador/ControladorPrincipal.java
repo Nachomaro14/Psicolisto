@@ -204,6 +204,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                     nombreAutorSeleccionado = "";
                     nombreObraSeleccionada = "";
                     nombreEnlaceSeleccionado = "";
+                    vista.txtAutorSeleccionado.setText("");
+                    vista.notaAutores.setText("");
+                    vista.txtProyectoSeleccionado.setText("");
+                    vista.notaProyectos.setText("");
                 }
                 break;
             case btnSalirInterfaz:
@@ -255,6 +259,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.eliminarProyecto.setVisible(false);
                 this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
                 vista.notaProyectos.setText("");
+                vista.txtProyectoSeleccionado.setText("");
                 vista.setVisible(true);
                 break;
             case btnNoEliminarProyecto:
@@ -291,8 +296,13 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                     vista.obras.pack();
                     vista.obras.setLocationRelativeTo(null);
                     vista.obras.setVisible(true);
+                    vista.notaAutores.setText("");
+                    vista.txtAutorSeleccionado.setText("");
+                    vista.txtApellidosAutorSeleccionado.setText("");
                     nombreObraSeleccionada = "";
                     nombreEnlaceSeleccionado = "";
+                    vista.txtObraSeleccionada.setText("");
+                    vista.notaObras.setText("");
                 }
                 break;
             case btnEnlaces:
@@ -306,8 +316,14 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                     vista.enlaces.pack();
                     vista.enlaces.setLocationRelativeTo(null);
                     vista.enlaces.setVisible(true);
+                    vista.notaAutores.setText("");
+                    vista.txtAutorSeleccionado.setText("");
+                    vista.txtApellidosAutorSeleccionado.setText("");
                     nombreObraSeleccionada = "";
                     nombreEnlaceSeleccionado = "";
+                    vista.txtEnlaceSeleccionado.setText("");
+                    vista.notaEnlaces.setText("");
+                    vista.rutaEnlaces.setText("");
                 }
                 break;
             case btnSalirAutores:
@@ -323,6 +339,8 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 this.vista.tablaProyectos.setModel(modelo.getTablaProyectos());
                 vista.setTitle("Psicolisto");
                 vista.setVisible(true);
+                vista.txtProyectoSeleccionado.setText("");
+                vista.notaProyectos.setText("");
                 vista.txtAutorSeleccionado.setText("");
                 vista.txtApellidosAutorSeleccionado.setText("");
                 break;
@@ -369,6 +387,8 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.eliminarAutor.setVisible(false);
                 this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
                 vista.notaAutores.setText("");
+                vista.txtAutorSeleccionado.setText("");
+                vista.txtApellidosAutorSeleccionado.setText("");
                 vista.autores.setVisible(true);
                 break;
             case btnNoEliminarAutor:
@@ -401,6 +421,9 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 this.vista.tablaAutores.setModel(modelo.getTablaAutores(proyecto));
                 vista.autores.setTitle("Psicolisto"+" ("+proyecto+")");
                 vista.autores.setVisible(true);
+                vista.txtAutorSeleccionado.setText("");
+                vista.txtApellidosAutorSeleccionado.setText("");
+                vista.notaAutores.setText("");
                 vista.txtObraSeleccionada.setText("");
                 break;
             case btnAceptarNuevaObra:
@@ -439,6 +462,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.eliminarObra.setVisible(false);
                 this.vista.tablaObras.setModel(modelo.getTablaObras(proyecto, autor));
                 vista.notaObras.setText("");
+                vista.txtObraSeleccionada.setText("");
                 vista.obras.setVisible(true);
                 break;
             case btnNoEliminarObra:
@@ -455,8 +479,10 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.nuevoEnlace.setVisible(true);
                 break;
             case btnEliminarEnlace:
-                vista.eliminarEnlace.setVisible(false);
-                vista.enlaces.setVisible(true);
+                vista.enlaces.setVisible(false);
+                vista.eliminarEnlace.pack();
+                vista.eliminarEnlace.setLocationRelativeTo(null);
+                vista.eliminarEnlace.setVisible(true);
                 break;
             case btnSalirEnlaces:
                 vista.enlaces.setVisible(false);
@@ -469,13 +495,15 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.autores.setTitle("Psicolisto"+" ("+proyecto+")");
                 vista.autores.setVisible(true);
                 vista.txtEnlaceSeleccionado.setText("");
+                vista.txtAutorSeleccionado.setText("");
+                vista.notaAutores.setText("");
                 break;
             case btnAceptarNuevoEnlace:
                 String nombreE = vista.txtNombreNuevoEnlace.getText();
                 String rutaE = vista.txtRutaNuevoEnlace.getText();
                 String temaE = vista.txtTemaNuevoEnlace.getText();
                 String notaE = vista.txtNotaNuevoEnlace.getText();
-                if(!rutaE.equals("")){
+                if(!rutaE.equals("") && !nombreE.equals("")){
                     int resuE = modelo.comprobarExistenciaEnlace(proyecto, autor, autorApe, nombreE);
                     if(resuE == 1){
                         JOptionPane.showMessageDialog(null, "Ya existe otro enlace de este autor con ese nombre.");
@@ -490,7 +518,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                         vista.txtNotaNuevoEnlace.setText("");
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Introduzca la ruta del nuevo enlace.");
+                    JOptionPane.showMessageDialog(null, "Introduzca el nombre y la ruta del nuevo enlace.");
                 }
                 break;
             case btnCancelarNuevoEnlace:
@@ -506,6 +534,8 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
                 vista.eliminarEnlace.setVisible(false);
                 vista.tablaEnlaces.setModel(modelo.getTablaEnlaces(proyecto, autor));
                 vista.notaEnlaces.setText("");
+                vista.txtEnlaceSeleccionado.setText("");
+                vista.rutaEnlaces.setText("");
                 vista.enlaces.setVisible(true);
                 break;
             case btnNoEliminarEnlace:
@@ -580,7 +610,7 @@ public class ControladorPrincipal implements ActionListener, MouseListener{
             String notaO = modelo.getNotaObra(nombreObraSeleccionada);
             vista.notaObras.setText(notaO);
             if(nombreObraSeleccionada.equals("") || nombreObraSeleccionada == null || nombreObraSeleccionada.isEmpty() || nombreObraSeleccionada.equals("null")){
-                vista.txtEnlaceSeleccionado.setText("");
+                vista.txtObraSeleccionada.setText("");
             }else{
                 vista.txtObraSeleccionada.setText(nombreObraSeleccionada);
             }
