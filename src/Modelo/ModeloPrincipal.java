@@ -20,7 +20,6 @@ public class ModeloPrincipal extends Database{
         public boolean isCellEditable(int row, int column){  
             return false;  
         }
-
     }
     
     public DefaultTableModel getTablaProyectos(){
@@ -611,11 +610,11 @@ public class ModeloPrincipal extends Database{
             int id1 = res1.getInt("ID_Proyecto");
             res1.close();
             try{
-                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Proyectos WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Autores WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
                 ResultSet res2 = pstm2.executeQuery();
-                res1.next();
+                res2.next();
                 int id2 = res2.getInt("ID_Autor");
-                res1.close();
+                res2.close();
                 try{
                     PreparedStatement pstm = this.getConexion().prepareStatement("UPDATE Obras SET Nota = '"+nuevaNota+"' WHERE Titulo = '"+obra+"' AND ID_Autor = "+id2);
                     pstm.execute();
@@ -643,11 +642,11 @@ public class ModeloPrincipal extends Database{
             int id1 = res1.getInt("ID_Proyecto");
             res1.close();
             try{
-                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Proyectos WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
+                PreparedStatement pstm2 = this.getConexion().prepareStatement("SELECT ID_Autor FROM Autores WHERE Nombre = '"+autor+"' AND ID_Proyecto = "+id1);
                 ResultSet res2 = pstm2.executeQuery();
-                res1.next();
+                res2.next();
                 int id2 = res2.getInt("ID_Autor");
-                res1.close();
+                res2.close();
                 try{
                     PreparedStatement pstm = this.getConexion().prepareStatement("UPDATE Enlaces SET Nota = '"+nuevaNota+"', SET Ruta = '"+nuevaRuta+"' WHERE Nombre = '"+enlace+"' AND ID_Autor = "+id2);
                     pstm.execute();
